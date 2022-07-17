@@ -5,7 +5,7 @@ FROM ubuntu:latest
 WORKDIR /root
 
 # Maintainer
-MAINTAINER Sushrut1101 <guptasushrut@gmail.com>
+MAINTAINER Bhav06 <bhavgupta200@gmail.com>
 
 # Delete the profile files (we'll copy our own in the next step)
 RUN \
@@ -36,8 +36,8 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
 RUN sudo apt install git ssh -y
 
 # Configure git
-ENV GIT_USERNAME Sushrut1101
-ENV GIT_EMAIL guptasushrut@gmail.com
+ENV GIT_USERNAME Bhav06
+ENV GIT_EMAIL bhavgupta200@gmail.com
 RUN \
     git config --global user.name $GIT_USERNAME \
 &&  git config --global user.email $GIT_EMAIL
