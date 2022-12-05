@@ -9,20 +9,20 @@ pacman -Syyu --needed --noconfirm 2>&1 | grep -v "warning: could not get file in
 # Install Basic Packages
 pacman -Sy --needed --noconfirm \
 	sudo nano git curl wget rsync aria2 rclone \
-	python2 python3 python-pip zip unzip cmake \
-	make neofetch speedtest-cli inetutils cpio \
-	jdk8-openjdk lzip dpkg openssl ccache repo \
+	python3 python-pip zip unzip cmake make \
+	neofetch speedtest-cli inetutils cpio repo \
+	jdk8-openjdk lzip dpkg openssl ccache dbus \
 	libelf base-devel openssh lz4 jq go ncurses \
 	bison flex ninja uboot-tools z3 glibc dpkg \
 	multilib-devel bc htop python-setuptools   \
-	util-linux man man-pages zsh systemd dbus
+	util-linux man-pages zsh systemd dbus
 
 # More Packages
 pacman -Sy --needed --noconfirm \
 	tmate tmux screen mlocate unace unrar p7zip \
 	sharutils uudeview arj cabextract file-roller \
 	dtc brotli axel gawk detox clang gcc gcc-libs \
-	flatpak
+	flatpak libxcrypt-compat
 
 # python and pip version
 python --version; pip --version
@@ -44,11 +44,11 @@ echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # AUR Packages
 sudo -u testuser yay -S --needed --noconfirm \
-	rename
+	rename python2
 
 # zsh
 chsh -s /bin/zsh root
-curl -sL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
+sh -c "$(curl -sL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Setup systemd
 find /etc/systemd/system /lib/systemd/system -path '*.wants/*' -not -name '*dbus*' -not -name '*journald*' -not -name '*systemd-tmpfiles*' -not -name '*systemd-user-sessions*' -exec rm -rf {} \;
